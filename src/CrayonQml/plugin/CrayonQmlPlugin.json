@@ -1,0 +1,12 @@
+{
+    "id": "com.crayonf.qmlplugin",
+    "version": "1.0.0",
+    "name": "Qml",
+    "organization": "CrayonF",
+    "domain": "CrayonF.com",
+    "doc": "Qml node plugin",
+    "image": ":/Resources/modbus_icon&32.png",
+    "depend": {
+
+    }
+}

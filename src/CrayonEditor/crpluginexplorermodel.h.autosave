@@ -1,0 +1,35 @@
+#ifndef CRPLUGINEXPLORERMODEL_H
+#define CRPLUGINEXPLORERMODEL_H
+
+#include <QAbstractItemModel>
+
+class CrProject;
+class CrNode;
+class CrPluginExplorerModel : public QAbstractItemModel
+{
+    Q_OBJECT
+public:
+    explicit CrPluginExplorerModel(CrProject *project = nullptr, QObject *parent = nullptr);
+
+    inline CrProject *project() const { return project();}
+    void setProject(CrProject *project);
+
+    virtual QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
+    virtual QModelIndex parent(const QModelIndex &child) const override;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
+    virtual QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    virtual QStringList	mimeTypes() const override;
+
+private:
+    CrProject* project_ = nullptr;
+    CrNode* rootNode_ = nullptr;
+
+private slots:
+    void updateNode();
+
+};
+#endif // CRPLUGINEXPLORERMODEL_H

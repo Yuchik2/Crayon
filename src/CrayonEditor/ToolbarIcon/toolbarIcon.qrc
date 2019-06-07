@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/ToolBarIcon">
+        <file>folder_icon.png</file>
+        <file>redo_icon.png</file>
+        <file>undo_icon.png</file>
+        <file>save_icon.png</file>
+        <file>new_file_icon.png</file>
+        <file>folder1_icon.png</file>
+        <file>save_as_icon.png</file>
+        <file>exit_icon.png</file>
+        <file>new_project.png</file>
+        <file>empty_node_icon.png</file>
+        <file>node_icon.png</file>
+        <file>close_icon.png</file>
+        <file>delete_icon.png</file>
+        <file>editor_icon.png</file>
+        <file>rename_icon.png</file>
+        <file>copy_icon.png</file>
+        <file>cut_icon.png</file>
+        <file>paste_icon.png</file>
+        <file>connect_icon.png</file>
+        <file>pause_icon.png</file>
+        <file>play_icon.png</file>
+        <file>settings_icon.png</file>
+        <file>search.png</file>
+        <file>upload-button.png</file>
+        <file>plus_icon.png</file>
+    </qresource>
+</RCC>

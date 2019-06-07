@@ -1,0 +1,160 @@
+#include "crpluginexplorermodel.h"
+
+#include <QVersionNumber>
+#include <QMimeData>
+#include <QDebug>
+#include <QIcon>
+#include <QDataStream>
+
+#include <CrayonCore/CrProject>
+#include <CrayonCore/CrNode>
+
+CrPluginExplorerModel::CrPluginExplorerModel(CrProject *project, QObject* parent) : QAbstractItemModel(project)
+{
+    setProject(project);
+}
+
+void CrPluginExplorerModel::setProject(CrProject *project)
+{
+    if(project_ == project)
+        return;
+    if(rootNode_){
+        disconnect(rootNode_, SIGNAL(childNodesChanged()), this, SLOT(updateNode()));  
+    }    
+    beginResetModel();
+    rootNode_ = nullptr;
+    project_ = project;    
+    if(project_ && rootNode_){
+        rootNode_ = project_->rootNode_;
+        connect(rootNode_, SIGNAL(childNodesChanged()), this, SLOT(updateNode()));
+    }    
+    endResetModel();   
+}
+
+QModelIndex CrPluginExplorerModel::index(int row, int column, const QModelIndex &parent) const
+{
+    if (!hasIndex(row, column, parent) || !rootNode_)
+        return QModelIndex();
+    
+    const CrNode* parentNode;
+    
+    if (!parent.isValid())
+        parentNode = rootNode_;
+    else
+        parentNode = static_cast<CrNode*>(parent.internalPointer());
+    
+    
+    CrNode* childNode = parentNode->childNodes().at(row);
+    if (childNode)
+        return createIndex(row, column,  childNode);
+    else
+        return QModelIndex();
+}
+
+QModelIndex CrPluginExplorerModel::parent(const QModelIndex &child) const
+{
+    if (!child.isValid() || !rootNode_)
+        return QModelIndex();
+    
+    CrNode* childNode = static_cast<CrNode*>(child.internalPointer());
+    CrNode* parentNode = childNode->parentNode();
+    if(parentNode ==  rootNode_)
+        return QModelIndex();
+    if(parentNode){
+        return createIndex(parentNode->parentNode()->childNodes().indexOf(parentNode), 0, parentNode);
+    }else{
+        return QModelIndex();
+    }
+}
+
+int CrPluginExplorerModel::rowCount(const QModelIndex &parent) const
+{
+    if(!rootNode_){
+        return 0;
+    }
+    const CrNode* parentNode;
+    
+    if (!parent.isValid())
+        parentNode = rootNode_;
+    else
+        parentNode = static_cast<CrNode*>(parent.internalPointer());
+    return parentNode->childNodes().size();
+}
+
+int CrPluginExplorerModel::columnCount(const QModelIndex &parent) const
+{
+    return 2;
+}
+
+QVariant CrPluginExplorerModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
+    CrNode* node = static_cast<CrNode*>(index.internalPointer());
+    if(index.column() == 0){
+        if (role == Qt::DisplayRole){
+            return node->nodeName();
+        }
+        //        if (role == Qt::DecorationRole){
+        //            QString IconPath = node->moduleKey.isNull() ? ":/Resources/folder_open_icon&32.png" : project_->moduleInfo(node->moduleKey).image;
+        //            return QIcon(IconPath);
+        //        }
+        if (role == Qt::ToolTipRole){
+            return node->toolTip();
+        }
+    }
+    //    if(index.column() == 1){
+    //        if (role == Qt::DisplayRole && !node->moduleKey.isNull()){
+    //            return project_->nodeVersion(node->nodeKey).toString();
+    //        }
+    //    }
+    return QVariant();
+}
+
+QVariant CrPluginExplorerModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role != Qt::DisplayRole)
+        return QVariant();
+    
+    if (orientation == Qt::Horizontal){
+        if(section == 0){
+            return tr("Name");
+        }
+        if(section == 1){
+            return tr("Version");
+        }
+    }else{
+        if(section == 0){
+            return tr("Name");
+        }
+        if(section == 1){
+            return tr("Version");
+        }
+    }
+    return QVariant();
+}
+
+Qt::ItemFlags CrPluginExplorerModel::flags(const QModelIndex &index) const
+{
+    return QAbstractItemModel::flags(index);
+}
+
+QMimeData *CrPluginExplorerModel::mimeData(const QModelIndexList &indexes) const
+{
+    QMimeData *mimeData = new QMimeData();
+    
+    return mimeData;
+}
+
+QStringList CrPluginExplorerModel::mimeTypes() const
+{
+    QStringList types;
+    return types;
+}
+
+void CrPluginExplorerModel::updateNode()
+{
+   beginResetModel();
+   endResetModel();
+}
+

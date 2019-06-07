@@ -1,0 +1,10 @@
+#ifndef CRAYONQMLPLUGIN_GLOBAL_H
+#define CRAYONQMLPLUGIN_GLOBAL_H
+#include <QtCore/qglobal.h>
+
+#if defined(CRAYON_QML_LIBRARY)
+#  define CRAYON_QML_EXPORT Q_DECL_EXPORT
+#else
+#  define CRAYON_QML_EXPORT Q_DECL_IMPORT
+#endif
+#endif // CRAYONQMLPLUGIN_GLOBAL_H

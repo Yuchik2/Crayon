@@ -1,0 +1,4 @@
+module ${MODULE_NAME}
+plugin ${PROJECT_NAME}Module
+classname crayonqmlmodule
+typeinfo plugins.qmltypes

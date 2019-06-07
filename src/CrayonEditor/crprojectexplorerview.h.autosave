@@ -1,0 +1,42 @@
+#ifndef CRPROJECTEXPLORERVIEW_H
+#define CRPROJECTEXPLORERVIEW_H
+
+#include <QWidget>
+class QTreeView;
+class QMenu;
+
+class CrNode;
+class CrProjectNode;
+class CrProjectExplorerModel;
+class CrNodeSettingsDialog;
+class CrProjectExplorer : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit CrProjectExplorer(CrProjectNode *project, QWidget *parent = nullptr);
+
+    void addProject(CrProjectNode *project);
+    void removeProject(CrProjectNode *project);
+
+    bool restoreState(const QByteArray &state);
+    QByteArray 	saveState() const;
+    static CrNodeSettingsDialog *settingsDialog();
+
+protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+private:
+
+    CrProjectNode *project_;
+    CrProjectExplorerModel* model_;
+    QTreeView* view_;
+    CrNode* currentNode_;
+    QMenu* popup_;
+    QAction* popupSettingsAction_;
+    QAction* popupDeleteAction_;
+   // QMenu* popupAddAction_;
+
+    CrNodeSettingsDialog* settingsDialog_;
+
+};
+
+#endif // CRPROJECTEXPLORERVIEW_H

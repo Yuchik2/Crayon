@@ -1,0 +1,12 @@
+{
+    "id": "com.crayonf.modbusplugin",
+    "version": "1.0.0",
+    "name": "Modbus",
+    "organization": "CrayonF",
+    "domain": "CrayonF.com",
+    "description": "Modbus plugin",
+    "image": ":/Resources/modbus_icon&32.png",
+    "depend": {
+        "com.crayonf.standartplugin": "1.0.0"
+    }
+}

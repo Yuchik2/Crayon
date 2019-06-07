@@ -1,0 +1,12 @@
+{
+    "id": "com.crayonf.standartplugin",
+    "version": "1.0.0",
+    "name": "Standart",
+    "organization": "CrayonF",
+    "domain": "CrayonF.com",
+    "description": "Standart node plugin",
+    "image": ":/Resources/modbus_icon&32.png",
+    "depend": {
+
+    }
+}

@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/CrayonQmlPluginResources">
+        <file>TestQml.qml</file>
+        <file>ViewerRootObject.qml</file>
+        <file>CrQmlMonitorRubberBand.qml</file>
+        <file>CrQmlMonitorSelector.qml</file>
+        <file>CrNullItem.qml</file>
+        <file>null_item.svg</file>
+        <file>monitor.svg</file>
+    </qresource>
+</RCC>

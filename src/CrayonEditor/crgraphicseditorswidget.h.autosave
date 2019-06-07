@@ -1,0 +1,34 @@
+#ifndef CRGRAPHICSEDITORSWIDGET_H
+#define CRGRAPHICSEDITORSWIDGET_H
+
+#include <QTabWidget>
+#include <QTabBar>
+
+class QLabel;
+class CrNode;
+class CrProjectEditorsWidget : public QTabWidget
+{
+    Q_OBJECT
+public:
+    explicit CrProjectEditorsWidget(QWidget *parent = nullptr);
+    virtual ~CrProjectEditorsWidget() override;
+
+    QList<CrNode *> nodes() const;
+    void addNode(CrNode* node);
+    void removeNode(CrNode* node);
+
+    CrNode *currentNode() const;
+    void setCurrentNode(CrNode *currentNode);
+
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+private:
+    QList<CrNode*> nodes_;
+    int currentDrag_ = -1;
+    QWidget* dragWidget_ = nullptr;
+    QHash<CrNode*, QWidget*> floatNodes_;
+    QLabel* dragPreview_;
+    CrNode* currentNode_;
+};
+
+#endif // CRGRAPHICSEDITORSWIDGET_H

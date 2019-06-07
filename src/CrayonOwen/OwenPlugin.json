@@ -1,0 +1,13 @@
+{
+    "id": "com.crayonf.owenplugin",
+    "version": "1.0.0",
+    "name": "Owen",
+    "organization": "CrayonF",
+    "domain": "CrayonF.com",
+    "description": "Owen plugin",
+    "image": ":/Resources/modbus_icon&32.png",
+    "depend": {
+        "com.crayonf.standartplugin": "1.0.0",
+        "com.crayonf.modbusplugin": "1.0.0"
+    }
+}

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/CrayonCoreResources">
+        <file>upload-button.png</file>
+        <file>search.png</file>
+    </qresource>
+</RCC>

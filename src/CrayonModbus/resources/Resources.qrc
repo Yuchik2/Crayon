@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/CrayonModbusPluginResources">
+        <file>modbus_rtu_icon.png</file>
+        <file>modbus_request_icon.png</file>
+    </qresource>
+</RCC>

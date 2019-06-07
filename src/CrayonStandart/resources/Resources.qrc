@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>noduleIcons/com.png</file>
+        <file>noduleIcons/GraphicsScene.png</file>
+        <file>icons/copy_icon.png</file>
+        <file>icons/cut_icon.png</file>
+        <file>icons/delete_icon.png</file>
+        <file>icons/paste_icon.png</file>
+        <file>noduleIcons/converters.png</file>
+        <file>noduleIcons/pause.png</file>
+        <file>noduleIcons/play.png</file>
+        <file>noduleIcons/speed.png</file>
+    </qresource>
+</RCC>

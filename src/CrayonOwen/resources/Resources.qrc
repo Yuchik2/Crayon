@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/OwenPluginResources">
+        <file>mu110-32r.png</file>
+        <file>mv110-32dn.png</file>
+    </qresource>
+</RCC>
